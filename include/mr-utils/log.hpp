@@ -4,29 +4,34 @@
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 
-#ifndef NDEBUG
+#ifndef MR_DISABLE_LOGGING
+
+#ifndef MR_LOG_LEVEL
+#define MR_LOG_LEVEL spdlog::level::debug
+#endif // MR_LOG_LEVEL
+
 namespace mr::detail {
 inline std::shared_ptr<spdlog::logger> get_logger() {
-    static auto logger = []{
-        auto logger = spdlog::stderr_color_mt("multi_robot");
+  static auto logger = []{
+    auto logger = spdlog::stderr_color_mt("multi_robot");
 
-        // Customize level names to match original macros
-        spdlog::level_strings custom_names;
-        custom_names[spdlog::level::critical] = "FATAL";
-        custom_names[spdlog::level::err] = "ERROR";
-        custom_names[spdlog::level::warn] = "WARNING";
-        custom_names[spdlog::level::info] = "INFO";
-        custom_names[spdlog::level::debug] = "DEBUG";
-        logger->set_level_strings(custom_names);
+    // Customize level names to match original macros
+    spdlog::level_strings custom_names;
+    custom_names[spdlog::level::critical] = "FATAL";
+    custom_names[spdlog::level::err] = "ERROR";
+    custom_names[spdlog::level::warn] = "WARNING";
+    custom_names[spdlog::level::info] = "INFO";
+    custom_names[spdlog::level::debug] = "DEBUG";
+    logger->set_level_strings(custom_names);
 
-        // Set log pattern with color markers
-        logger->set_pattern("%^%l: %v%$");
+    // Set log pattern with color markers
+    logger->set_pattern("%^%l: %v%$");
 
-        // Set log level for debug builds
-        logger->set_level(spdlog::level::debug);
-        return logger;
-    }();
+    // Set log level for debug builds
+    logger->set_level(MR_LOG_LEVEL);
     return logger;
+  }();
+  return logger;
 }
 } // namespace mr::detail
 
