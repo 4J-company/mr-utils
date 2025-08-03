@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.27)
 project(
   mr-utils
-  VERSION 1.0.1
+  VERSION 1.0.4
   LANGUAGES CXX
 )
 
