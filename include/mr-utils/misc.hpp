@@ -4,13 +4,16 @@
 #include <filesystem>
 #include <vector>
 
-#include "utils/log.hpp"
+#include "mr-utils/log.hpp"
 
 namespace std {
   namespace fs = filesystem;
 }
 
 namespace mr {
+  using uint = std::uint32_t;
+  using byte = std::uint8_t;
+
   template <typename... Ts>
     struct Overloads : Ts... {
       using Ts::operator()...;

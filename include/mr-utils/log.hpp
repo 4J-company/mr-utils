@@ -15,19 +15,8 @@ inline std::shared_ptr<spdlog::logger> get_logger() {
   static auto logger = []{
     auto logger = spdlog::stderr_color_mt("multi_robot");
 
-    // Customize level names to match original macros
-    spdlog::level_strings custom_names;
-    custom_names[spdlog::level::critical] = "FATAL";
-    custom_names[spdlog::level::err] = "ERROR";
-    custom_names[spdlog::level::warn] = "WARNING";
-    custom_names[spdlog::level::info] = "INFO";
-    custom_names[spdlog::level::debug] = "DEBUG";
-    logger->set_level_strings(custom_names);
-
-    // Set log pattern with color markers
     logger->set_pattern("%^%l: %v%$");
 
-    // Set log level for debug builds
     logger->set_level(MR_LOG_LEVEL);
     return logger;
   }();
