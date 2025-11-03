@@ -12,6 +12,7 @@ include(cmake/deps.cmake)
 add_library(${MR_UTILS_LIB_NAME} INTERFACE
   include/mr-utils/log.hpp
   include/mr-utils/assert.hpp
+  include/mr-utils/containers.hpp
   include/mr-utils/path.hpp
   include/mr-utils/misc.hpp
 )
