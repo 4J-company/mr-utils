@@ -1,6 +1,7 @@
 #ifndef MR_MISC_HPP
 #define MR_MISC_HPP
 
+#include <fstream>
 #include <filesystem>
 #include <vector>
 
