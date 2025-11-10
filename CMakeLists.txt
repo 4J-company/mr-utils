@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.27)
 project(
   mr-utils
-  VERSION 1.0.4
+  VERSION 1.1.2
   LANGUAGES CXX
 )
 
@@ -13,7 +13,6 @@ add_library(${MR_UTILS_LIB_NAME} INTERFACE
   include/mr-utils/log.hpp
   include/mr-utils/assert.hpp
   include/mr-utils/containers.hpp
-  include/mr-utils/path.hpp
   include/mr-utils/misc.hpp
 )
 target_include_directories(${MR_UTILS_LIB_NAME} INTERFACE
